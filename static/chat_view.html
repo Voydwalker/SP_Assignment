@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="/static/chat.js"></script>
+        <style>
+            .title{
+                font-size: 40pt;
+                text-align:center;
+            }
+            .message_block {
+                width: 75%;
+                height: 75%;
+                border-top: solid 10pt white;
+                background-color: #DDDDDD;
+                position: relative;
+            }
+            .message_text {
+                position: absolute;
+                top: calc(50% - 50pt);
+                font-size: 100pt;
+                text-align: center;
+                width: 100%;
+            }
+            .text_block{
+                width: 60%;
+                font-size: 20pt;
+            }
+            .button{
+                width: 14%;
+                font-size: 20pt;
+            }
+            html,body {
+                height: 100%;
+                margin: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="title">WOTchat</div>
+        <div id='message_1_block' class='message_block'>
+            <span id='message_1_text' class='message_text' onclick='popsciquiz.selected(1)'>1</span></div>
+
+        <form action="" method="post">
+            <p><input type=text name=message class="text_block">
+            <input type=submit value="Send" class="button">
+        </form>
+        <input type="submit" value="Log out" class="button" onclick="chat.logout()">
+    </body>
+</html>
