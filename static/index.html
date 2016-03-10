@@ -3,7 +3,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script>
-    window.onload=setInterval(refHis, 500)
+    window.onload=setInterval(refHis, 5000)
     $(document).ready(function(){
         $("#submit").click(function(){
             $.ajax({
@@ -19,8 +19,14 @@
         });
     });
     function refHis(){
-        
-        $("#chat_log").append("blahblah"+"<br>");
+        $.ajax({
+            url: "history",
+            type: "GET",
+            dataType: "text",
+            success: function(data){
+                $("#chat_log").html(data);
+            }
+        });
     };
     </script>
     <style>
