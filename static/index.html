@@ -3,6 +3,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script>
+    window.onload=setInterval(refHis, 500)
     $(document).ready(function(){
         $("#submit").click(function(){
             $.ajax({
@@ -14,8 +15,13 @@
                     $("#chat_log").append(JSON.stringify({"User":$('#user').val(), "Message":$('#msg').val()})+"<br>");
                 }
             });
+
         });
     });
+    function refHis(){
+        
+        $("#chat_log").append("blahblah"+"<br>");
+    };
     </script>
     <style>
         .c_log{
@@ -34,6 +40,6 @@
 <div id="chat_log" class="c_log"></div>
 User: <input id="user" type="text" placeholder="User">
 Message: <input id="msg" type="text" placeholder="Message">
-<input id="submit" type="button" value="Submit">
+<button id="submit">Submit</button>
 </body>
 </html>
