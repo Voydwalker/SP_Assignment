@@ -9,13 +9,17 @@
                 url: "message",
                 type: "POST",
                 contentType: 'application/json',
-                data: JSON.stringify({"User":$('#user').val(), "Message":$('#msg').val()})
+                data: JSON.stringify({"User":$('#user').val(), "Message":$('#msg').val()}),
+                success: function(data){
+                    $("#chat_log").append(JSON.stringify({"User":$('#user').val(), "Message":$('#msg').val()})+"<br>");
+                }
             });
         });
     });
     </script>
     <style>
         .c_log{
+        overflow: scroll;
         width: 75%;
         height: 80%;
         border: solid 2pt black;
@@ -28,8 +32,8 @@
 </head>
 <body>
 <div id="chat_log" class="c_log"></div>
-User: <input id="user" type="text" value="User">
-Message: <input id="msg" type="text" value="Message">
+User: <input id="user" type="text" placeholder="User">
+Message: <input id="msg" type="text" placeholder="Message">
 <input id="submit" type="button" value="Submit">
 </body>
 </html>

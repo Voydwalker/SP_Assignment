@@ -15,6 +15,8 @@ def default():
 def message():
     with open('data.txt', 'a') as file:
         json.dump(request.json, file)
+        file.write("\n")
+        file.close()
     return "logged"
 
 @app.route('/history')
