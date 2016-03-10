@@ -5,14 +5,14 @@
     <script>
     window.onload=setInterval(refHis, 5000)
     $(document).ready(function(){
-        $("#submit").click(function(){
+        $("#submit").click(function(){  //on refresh it writes null to file
             $.ajax({
                 url: "message",
                 type: "POST",
                 contentType: 'application/json',
                 data: JSON.stringify({"User":$('#user').val(), "Message":$('#msg').val()}),
                 success: function(data){
-                    $("#chat_log").append(JSON.stringify({"User":$('#user').val(), "Message":$('#msg').val()})+"<br>");
+                    refHis();
                 }
             });
 
@@ -24,9 +24,15 @@
             type: "GET",
             dataType: "text",
             success: function(data){
-                $("#chat_log").html(data);
+                $("#chat_log").html(modify(data));
             }
         });
+    };
+    function modify(data){
+        re=/^} ,{$/;
+        data=data.slice(1,data.length-1);
+        ndata=data.replace(re,"<br>");  //this wont work.
+    return ndata
     };
     </script>
     <style>
@@ -44,8 +50,8 @@
 </head>
 <body>
 <div id="chat_log" class="c_log"></div>
-User: <input id="user" type="text" placeholder="User">
-Message: <input id="msg" type="text" placeholder="Message">
+User: <input id="user" type="text" placeholder="User" autocomplete="off">
+Message: <input id="msg" type="text" placeholder="Message" autocomplete="off">
 <button id="submit">Submit</button>
 </body>
 </html>

@@ -20,7 +20,10 @@ def history():
     with open('data.txt', 'r') as file:
         for line in file:
             out+=(line+',')
-    return out[:-1]+']'
+    if len(out)==1:
+        return " No previous chat history. "
+    else:
+        return out[:-1]+']'
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
