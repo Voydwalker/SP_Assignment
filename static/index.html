@@ -3,6 +3,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script>
+
     window.onload=setInterval(refHis, 5000)
     $(document).ready(function(){
         $("#submit").click(function(){  //on refresh it writes null to file
@@ -24,15 +25,17 @@
             type: "GET",
             dataType: "text",
             success: function(data){
+           // console.log(data)
+           // console.log(modify(data))
                 $("#chat_log").html(modify(data));
             }
         });
     };
     function modify(data){
-        re=/^} ,{$/;
-        data=data.slice(1,data.length-1);
-        ndata=data.replace(re,"<br>");  //this wont work.
-    return ndata
+        re=RegExp('}.*\n*.*{','g');
+        data=data.slice(2,data.length-3);
+        data=data.replace(re,"<br>");
+    return data
     };
     </script>
     <style>
@@ -49,7 +52,7 @@
     </style>
 </head>
 <body>
-<div id="chat_log" class="c_log"></div>
+<div id="chat_log" class="c_log">Chat history.</div>
 User: <input id="user" type="text" placeholder="User" autocomplete="off">
 Message: <input id="msg" type="text" placeholder="Message" autocomplete="off">
 <button id="submit">Submit</button>

@@ -7,12 +7,11 @@ app = Flask(__name__)
 def default():
     return app.send_static_file('index.html')
 
-@app.route('/message', methods=['GET', 'POST'])
+@app.route('/message', methods=['POST'])
 def message():
     with open('data.txt', 'a') as file:
         json.dump(request.json, file)
         file.write("\n")
-    return app.send_static_file('index.html')
 
 @app.route('/history')
 def history():
@@ -21,7 +20,7 @@ def history():
         for line in file:
             out+=(line+',')
     if len(out)==1:
-        return " No previous chat history. "
+        return ''
     else:
         return out[:-1]+']'
 
